@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Post } from './types/post';
-import { Theme } from './types/theme';
+import { Stock } from './types/stocks';
 
 @Injectable({
   providedIn: 'root',
@@ -9,46 +8,46 @@ import { Theme } from './types/theme';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  getPosts(limit?: number) {
-    let url = `/api/posts`;
-    if (limit) {
-      url += `?limit=${limit}`;
-    }
+  // getPosts(limit?: number) {
+  //   let url = `/api/posts`;
+  //   if (limit) {
+  //     url += `?limit=${limit}`;
+  //   }
 
-    return this.http.get<Post[]>(url);
-  }
+  //   return this.http.get<Post[]>(url);
+  // }
 
-  getThemes() {
-    return this.http.get<Theme[]>(`/api/themes`);
-  }
+  // getThemes() {
+  //   return this.http.get<Theme[]>(`/api/themes`);
+  // }
 
-  getSingleTheme(id: string) {
-    return this.http.get<Theme>(`/api/themes/${id}`);
-  }
+  // getSingleTheme(id: string) {
+  //   return this.http.get<Theme>(`/api/themes/${id}`);
+  // }
 
-  createTheme(themeName: string, postText: string) {
-    const payload = { themeName, postText };
-    return this.http.post<Theme>(`/api/themes`, payload);
-  }
+  // createTheme(themeName: string, postText: string) {
+  //   const payload = { themeName, postText };
+  //   return this.http.post<Theme>(`/api/themes`, payload);
+  // }
 
-  // CRUD operations
-  // update -> http.put
-  updateTheme(themeId: string, themeName: string, postText: string) {
-    const payload = { themeName, postText };
-    return this.http.put<Theme>(`/api/themes/${themeId}`, payload);
-  }
+  // // CRUD operations
+  // // update -> http.put
+  // updateTheme(themeId: string, themeName: string, postText: string) {
+  //   const payload = { themeName, postText };
+  //   return this.http.put<Theme>(`/api/themes/${themeId}`, payload);
+  // }
 
-  updatePost(themeId: string, postId: string) {
-    const payload = {};
-    return this.http.put<Theme>(
-      `/api/themes/${themeId}/posts/${postId}`,
-      payload
-    );
-  }
+  // updatePost(themeId: string, postId: string) {
+  //   const payload = {};
+  //   return this.http.put<Theme>(
+  //     `/api/themes/${themeId}/posts/${postId}`,
+  //     payload
+  //   );
+  // }
 
-  // delete -> http.delete theme ID
-  deletePost(themeId: string, postId: string) {
-    return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
-  }
+  // // delete -> http.delete theme ID
+  // deletePost(themeId: string, postId: string) {
+  //   return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
+  // }
 }
  

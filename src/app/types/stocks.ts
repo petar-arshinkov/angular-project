@@ -1,11 +1,10 @@
-import { Post } from './post';
 import { User } from './user';
 
-export interface Theme {
-  subscribers: string[];
-  posts: Post[];
+export interface Stock {
   _id: string;
-  themeName: string;
+  name: string;
+  ticker: string;
+  price: number;
   userId: User;
   created_at: string;
   updatedAt: string;
