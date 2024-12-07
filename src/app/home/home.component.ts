@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-// import { UserService } from '../user/user.service';
+
+import { StockListComponent } from '../stock/stock-list/stock-list.component';
+
+import { UserService } from '../user/user.service';
+import { LoaderComponent } from '../shared/loader/loader.component';
+import { AddStockComponent } from "../stock/add-stock/add-stock.component";
+import { LoginComponent } from "../user/login/login.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [StockListComponent, AddStockComponent, LoginComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

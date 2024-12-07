@@ -17,18 +17,18 @@ export class ApiService {
   //   return this.http.get<Post[]>(url);
   // }
 
-  // getThemes() {
-  //   return this.http.get<Theme[]>(`/api/themes`);
-  // }
+  getStocks() {
+    return this.http.get<Stock[]>(`/api/stocks`);
+  }
 
   // getSingleTheme(id: string) {
   //   return this.http.get<Theme>(`/api/themes/${id}`);
   // }
 
-  // createTheme(themeName: string, postText: string) {
-  //   const payload = { themeName, postText };
-  //   return this.http.post<Theme>(`/api/themes`, payload);
-  // }
+  createStock(stockName: string, stockTicker: string, sharePrice: number) {
+    const payload = { stockName, stockTicker, sharePrice };
+    return this.http.post<Stock>(`/api/stocks`, payload);
+  }
 
   // // CRUD operations
   // // update -> http.put

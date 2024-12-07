@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { ApiService } from '../../api.service';
+import { ApiService } from '../../api.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,18 +11,18 @@ import { Router } from '@angular/router';
   styleUrl: './add-stock.component.css',
 })
 export class AddStockComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private apiService: ApiService) {}
 
   addStock(form: NgForm) {
     if (form.invalid) {
       return;
     }
 
-    const { StockName } = form.value;
+    const { stockName, stockTicker, sharePrice } = form.value;
     console.log(form);
     
-    // this.apiService.createTheme(StockName, postText).subscribe(() => {
-    //   this.router.navigate(['/stocks']);
-    // });
+    this.apiService.createStock(stockName, stockTicker, sharePrice).subscribe(() => {
+      this.router.navigate(['/stocks']);
+    });
   }
 }

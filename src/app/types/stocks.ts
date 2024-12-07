@@ -5,6 +5,7 @@ export interface Stock {
   name: string;
   ticker: string;
   price: number;
+  watchers: string[];
   userId: User;
   created_at: string;
   updatedAt: string;

@@ -5,8 +5,7 @@ import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AddStockComponent } from './stock/add-stock/add-stock.component';
-// import { MainComponent } from './main/main.component';
-// import { CurrentThemeComponent } from './theme/current-theme/current-theme.component';
+import { CurrentStockComponent } from './stock/current-stock/current-stock.component';
 // import { AuthGuard } from './guards/auth.guard';
 // import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
@@ -17,22 +16,25 @@ export const routes: Routes = [
   //   Start - User routing
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'logout', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'add-stock', component: AddStockComponent },
+
   //   End - User routing
 
-//   // Start - Theme routing
-//   {
-//     path: 'themes',
-//     children: [
-//       { path: '', component: MainComponent },
-//       {
-//         path: ':themeId',
-//         component: CurrentThemeComponent,
-//         canActivate: [AuthGuard],
-//       },
-//     ],
-//   },
+
+  // Start - Theme routing
+  {
+    path: 'themes',
+    children: [
+      { path: '', component: HomeComponent },
+      {
+        path: ':stockId',
+        component: CurrentStockComponent,
+        // canActivate: [AuthGuard],
+      },
+    ],
+  },
+  { path: 'add-stock', component: AddStockComponent },
   // {
   //   path: 'add-theme',
   //   loadComponent: () =>
@@ -41,7 +43,7 @@ export const routes: Routes = [
   //     ),
   //   canActivate: [AuthGuard],
   // },
-//   // End - Theme routing
+  // End - Theme routing
 
 //   { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },

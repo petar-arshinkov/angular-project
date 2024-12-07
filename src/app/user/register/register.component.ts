@@ -9,7 +9,7 @@ import { Router, RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../constants';
 import { matchPasswordsValidator } from '../../utils/match-passwords.validator';
-// import { UserService } from '../user.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +39,7 @@ export class RegisterComponent {
     ),
   });
 
-  constructor( private router: Router) {}
+  constructor( private userService: UserService, private router: Router) {}
 
   isFieldTextMissing(controlName: string) {
     return (
@@ -76,14 +76,12 @@ export class RegisterComponent {
       email,
       passGroup: { password, rePassword } = {},
     } = this.form.value;
-
-    console.log(this.form);
     
 
-    // this.userService
-    //   .register(username!, email!, password!, rePassword!)
-    //   .subscribe(() => {
-    //     this.router.navigate(['/home']);
-    //   });
+    this.userService
+      .register(username!, email!, password!, rePassword!)
+      .subscribe(() => {
+        this.router.navigate(['/home']);
+      });
   }
 }

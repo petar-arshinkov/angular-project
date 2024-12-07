@@ -1,0 +1,37 @@
+@if (isLoading) {
+    <app-loader />
+}@else {
+
+<!-- All Stocks -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Stock List</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">Stock Name</th>
+                        <th scope="col">Ticker Symbol</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (stock of stocks; track $index) {
+                        <tr>
+                            <td>{{stock.name}}</td>
+                            <td>{{stock.ticker}}</td>
+                            <td>{{stock.price}}</td>
+                            <td><a class="btn btn-sm btn-primary details-btn" href="">Details</a> <a class="btn btn-sm btn-primary portfolio-btn" href="">Add to Portfolio</a></td>
+                        </tr>
+                    }
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- All Stocks End -->
+}

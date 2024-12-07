@@ -25,11 +25,10 @@ export class UserService implements OnDestroy {
   }
 
   login(email: string, password: string) {
-    console.log("log in");
     
-    // return this.http
-    //   .post<UserForAuth>('/api/login', { email, password })
-    //   .pipe(tap((user) => this.user$$.next(user)));
+    return this.http
+      .post<UserForAuth>('/api/login', { email, password })
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   register(
