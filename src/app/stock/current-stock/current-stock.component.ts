@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Stock } from '../../types/stocks';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
@@ -8,7 +8,7 @@ import { HomeComponent } from '../../home/home.component';
 @Component({
   selector: 'app-current-stock',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, HomeComponent],
   templateUrl: './current-stock.component.html',
   styleUrl: './current-stock.component.css'
 })

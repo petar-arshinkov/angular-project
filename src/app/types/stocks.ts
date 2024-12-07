@@ -5,6 +5,8 @@ export interface Stock {
   stockName: string;
   stockTicker: string;
   sharePrice: number;
+  stockDescription: string;
+  stockLogoLink: string;
   watchers: string[];
   userId: User;
   created_at: string;

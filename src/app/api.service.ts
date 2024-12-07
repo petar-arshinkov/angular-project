@@ -6,7 +6,7 @@ import { Stock } from './types/stocks';
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // getPosts(limit?: number) {
   //   let url = `/api/posts`;
@@ -21,20 +21,20 @@ export class ApiService {
     return this.http.get<Stock[]>(`/api/stocks`);
   }
 
-   getSingleStock(id: string) {
+  getSingleStock(id: string) {
     return this.http.get<Stock>(`/api/stocks/${id}`);
   }
 
   watch(id: string) {
-    return this.http.put(`/api/watch/${id}`, {});
+    return this.http.put<Stock>(`/api/watch/${id}`, {});
   }
 
   // getSingleTheme(id: string) {
   //   return this.http.get<Theme>(`/api/themes/${id}`);
   // }
 
-  createStock(stockName: string, stockTicker: string, sharePrice: number) {
-    const payload = { stockName, stockTicker, sharePrice };
+  createStock(stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
+    const payload = { stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
     return this.http.post<Stock>(`/api/stocks`, payload);
   }
 
@@ -58,4 +58,3 @@ export class ApiService {
   //   return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
   // }
 }
- 

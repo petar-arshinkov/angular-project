@@ -12,23 +12,42 @@ import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', loadComponent: () =>
+    import('./home/home.component').then(
+      (c) => c.HomeComponent
+    ) },
   {
     path: 'home',
     children: [
       {
         path: ':stockId',
-        component: CurrentStockComponent,
+        loadComponent: () =>
+          import('./stock/current-stock/current-stock.component').then(
+            (c) => c.CurrentStockComponent
+          ),
         canActivate: [AuthGuard],
-      }
+      },
     ],
   },
 
   //   Start - User routing
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'logout', component: LogoutComponent },
+  { path: 'login', loadComponent: () =>
+    import('./user/login/login.component').then(
+      (c) => c.LoginComponent
+    )
+   },
+  { path: 'register', loadComponent: () =>
+    import('./user/register/register.component').then(
+      (c) => c.RegisterComponent
+    ) },
+  { path: 'profile', loadComponent: () =>
+    import('./user/profile/profile.component').then(
+      (c) => c.ProfileComponent
+    ) },
+  { path: 'logout', loadComponent: () =>
+    import('./user/logout/logout.component').then(
+      (c) => c.LogoutComponent
+    )},
 
   //   End - User routing
 
@@ -37,26 +56,47 @@ export const routes: Routes = [
   {
     path: 'stocks',
     children: [
-      { path: '', component: HomeComponent },
+      { path: '', loadComponent: () =>
+        import('./home/home.component').then(
+          (c) => c.HomeComponent
+        ) },
       {
         path: ':stockId',
-        component: CurrentStockComponent,
+        loadComponent: () =>
+          import('./stock/current-stock/current-stock.component').then(
+            (c) => c.CurrentStockComponent
+          ),
         canActivate: [AuthGuard],
-      },
+      }
+
     ],
   },
-  { path: 'add-stock', component: AddStockComponent },
-  // {
-  //   path: 'add-theme',
-  //   loadComponent: () =>
-  //     import('./stock/add-stock/add-stock.component').then(
-  //       (c) => c.AddStockComponent
-  //     ),
-  //   canActivate: [AuthGuard],
-  // },
-  // End - Theme routing
+  {
+    path: 'add-stock', loadComponent: () =>
+      import('./stock/add-stock/add-stock.component').then(
+              (c) => c.AddStockComponent
+            ),
+          canActivate: [AuthGuard],},
 
-  { path: 'error', component: ErrorMsgComponent },
-  { path: '404', component: PageNotFoundComponent },
-  { path: '**', redirectTo: '/404' },
+
+
+        // {
+        //   path: 'add-theme',
+        //   loadComponent: () =>
+        //     import('./stock/add-stock/add-stock.component').then(
+        //       (c) => c.AddStockComponent
+        //     ),
+        //   canActivate: [AuthGuard],
+        // },
+        // End - Theme routing
+
+        { path: 'error', loadComponent: () =>
+          import('./core/error-msg/error-msg.component').then(
+            (c) => c.ErrorMsgComponent
+          ) },
+        { path: '404', loadComponent: () =>
+          import('./error/error.component').then(
+            (c) => c.PageNotFoundComponent
+          ) },
+        { path: '**', redirectTo: '/404' },
 ];

@@ -1,5 +1,7 @@
 
-
+@if(!isLoggedIn){
+  <app-home />
+  }
 <main class="main-area">
     
     <div class="centered">
@@ -10,19 +12,22 @@
                 
                     <div class="card-content">
                         <div class="card-header">
-                            <h3>Tesla, Inc.</h3>
+                            <h3>{{stock.stockName}}</h3>
                           </div>
                           <div class="card-body">
                             
-                            <h2 class="card-title">TSLA</h2>
+                            <h2 class="card-title">{{stock.stockTicker}}</h2>
+                            <img src="{{stock.stockLogoLink}}" alt="{{stock.stockName}}">
                             <div>
-                              <p class="card-text">Tesla, Inc. is an American electric vehicle and clean energy company based in Palo Alto, California. Tesla's current products include electric cars, battery energy storage from home to grid scale, solar products and related products and services.</p>
+                              <p class="card-text">{{stock.stockDescription}}</p>
                             </div>
                             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                           </div>
                           <div class="card-footer">
-                            Current Price: <a>429.95</a>
+                            Current Price: <a>{{stock.sharePrice}}</a>
                           </div>
+                          <br>
+                          <a class="btn btn-sm btn-primary portfolio-btn" [routerLink]="['/watch', stock._id]">Add to Watchlist</a>
                     </div><!-- .card-content -->
                
             </article><!-- .card -->

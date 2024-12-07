@@ -56,6 +56,38 @@
               max="1000">
               <label for="inputPrice">Share Price</label>
             </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" placeholder="Apple is a nice company" 
+              [class]="(
+              (inputName?.touched && stockDescription?.errors?.['required']) || 
+               (inputName?.touched && stockDescription?.errors?.['minlength']))
+               ? 'input-error': ''"
+              type="text" 
+              name="stockDescription" 
+              id="inputDescription" 
+              ngModel
+              #stockDescription="ngModel" 
+              required 
+              minlength="10">
+              <label for="stockDescription">Stock Description</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" placeholder="URL" 
+              [class]="(
+              (inputName?.touched && stockLogoLink?.errors?.['required']) || 
+               (inputName?.touched && stockLogoLink?.errors?.['minlength']))
+               ? 'input-error': ''"
+              type="text" 
+              name="stockLogoLink" 
+              id="inputLogoLink" 
+              ngModel
+              #stockLogoLink="ngModel" 
+              required 
+              minlength="1">
+              <label for="stockLogoLink">Link To Company Logo</label>
+            </div>
             
             <button type="submit" class="btn btn-primary py-3 w-100 mb-4"  [disabled]="form.invalid"
             [style]="{ backgroundColor: form.invalid ? 'grey' : '' }">Add Stock</button>
