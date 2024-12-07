@@ -6,6 +6,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AddStockComponent } from './stock/add-stock/add-stock.component';
 import { CurrentStockComponent } from './stock/current-stock/current-stock.component';
+import { LogoutComponent } from './user/logout/logout.component';
 // import { AuthGuard } from './guards/auth.guard';
 // import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'logout', component: LogoutComponent },
 
   //   End - User routing
 
