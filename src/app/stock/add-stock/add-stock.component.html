@@ -1,4 +1,4 @@
-<!-- Sign In Start -->
+
 <div class="container-fluid">
     <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
       <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
@@ -9,55 +9,52 @@
           </div>
           <form class="add-stock" #form="ngForm" (ngSubmit)="addStock(form)" >
             <div class="form-floating mb-3">
-              <input class="form-control" id="floatingInput" placeholder="Apple" 
+              <input class="form-control" placeholder="Apple" 
               [class]="(
               (inputName?.touched && inputName?.errors?.['required']) || 
                (inputName?.touched && inputName?.errors?.['minlength']))
                ? 'input-error': ''"
               type="text" 
-              name="inputName" 
+              name="stockName" 
               id="inputName" 
-              placeholder="Apple" 
               ngModel
               #inputName="ngModel" 
               required 
               minlength="3">
-              <label for="floatingInput">Stock Name</label>
+              <label for="inputName">Stock Name</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control" id="floatingInput" placeholder="AAPL" 
+              <input class="form-control" placeholder="AAPL" 
               [class]="(
                 (inputTicker?.touched && inputTicker?.errors?.['required']) || 
                  (inputTicker?.touched && inputTicker?.errors?.['minlength']))
                ? 'input-error': ''"
               type="text" 
-              name="inputTicker" 
+              name="stockTicker" 
               id="inputTicker" 
-              placeholder="AAPL" 
               ngModel
               #inputTicker="ngModel" 
               required 
               minlength="3">
-              <label for="floatingInput">Stock Ticker</label>
+              <label for="inputTicker">Stock Ticker</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="floatingInput" placeholder="$100" 
+              <input type="number" class="form-control" placeholder="$100" 
               [class]="(
               (inputPrice?.touched && inputPrice?.errors?.['required']) || 
               (inputPrice?.touched && inputPrice?.errors?.['min']) || 
               (inputPrice?.touched && inputPrice?.errors?.['max']))
                ? 'input-error': ''"
-              name="inputPrice" 
+              name="sharePrice" 
               id="inputPrice" 
-              placeholder="$100" 
               ngModel
               #inputPrice="ngModel" 
               required 
               min="0" 
               max="1000">
-              <label for="floatingInput">Share Price</label>
+              <label for="inputPrice">Share Price</label>
             </div>
             
             <button type="submit" class="btn btn-primary py-3 w-100 mb-4"  [disabled]="form.invalid"
@@ -67,4 +64,3 @@
       </div>
     </div>
   </div>
-  <!-- Sign In End -->

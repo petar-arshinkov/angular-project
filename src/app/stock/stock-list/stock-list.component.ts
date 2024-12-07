@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-stock-list',
   standalone: true,
-  imports: [LoaderComponent, LoaderComponent],
+  imports: [LoaderComponent, LoaderComponent, RouterLink],
   templateUrl: './stock-list.component.html',
   styleUrl: './stock-list.component.css'
 })
@@ -18,12 +18,12 @@ export class StockListComponent implements OnInit{
   stocks: Stock[] = [];
   isLoading = false;
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    // this.apiService.getStocks().subscribe((stocks) => {
-    //   this.stocks = stocks;
-    //   this.isLoading = false;
-    // });
+    this.apiService.getStocks().subscribe((stocks) => {
+      this.stocks = stocks;
+      this.isLoading = false;
+    });
   }
 }

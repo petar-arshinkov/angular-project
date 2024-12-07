@@ -25,7 +25,7 @@ export const routes: Routes = [
 
   // Start - Theme routing
   {
-    path: 'themes',
+    path: 'stocks',
     children: [
       { path: '', component: HomeComponent },
       {
