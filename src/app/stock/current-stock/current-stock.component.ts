@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Stock } from '../../types/stocks';
-// import { HomeComponent } from '../../home/home.component';
+import { ApiService } from '../../api.service';
+import { UserService } from '../../user/user.service';
+import { HomeComponent } from '../../home/home.component';
 
 @Component({
   selector: 'app-current-stock',
@@ -15,23 +17,23 @@ export class CurrentStockComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private apiService: ApiService,
-    // private userService: UserService
+    private apiService: ApiService,
+    private userService: UserService
   ) {}
 
-  // get isLoggedIn(): boolean {
-  //   return this.userService.isLogged;
-  // }
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
 
-  // get username(): string {
-  //   return this.userService.user?.username || '';
-  // }
+  get username(): string {
+    return this.userService.user?.username || '';
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['stockId'];
 
-    // this.apiService.getSingleTheme(id).subscribe((theme) => {
-    //   this.theme = theme;
-    // });
+    this.apiService.getSingleStock(id).subscribe((stock) => {
+      this.stock = stock;
+    });
   }
 }

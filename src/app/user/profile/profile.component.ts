@@ -8,7 +8,7 @@ import {
 import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../constants';
 import { ProfileDetails } from '../../types/user';
-// import { UserService } from '../user.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -31,19 +31,18 @@ export class ProfileComponent implements OnInit {
       Validators.minLength(5),
     ]),
     email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
-    tel: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    // const { username, email, tel } = this.userService.user!;
-    // this.profileDetails = { username, email };
+    const { username, email } = this.userService.user!;
+    this.profileDetails = { username, email };
 
-    // this.form.setValue({
-    //   username,
-    //   email,
-    // });
+    this.form.setValue({
+      username,
+      email,
+    });
   }
 
   toggleEditMode() {
@@ -57,11 +56,11 @@ export class ProfileComponent implements OnInit {
 
     this.profileDetails = this.form.value as ProfileDetails;
 
-    const { username, email} = this.profileDetails;
+    const { username, email } = this.profileDetails;
 
-    // this.userService.updateProfile(username, email, tel).subscribe(() => {
-    //   this.toggleEditMode();
-    // });
+    this.userService.updateProfile(username, email).subscribe(() => {
+      this.toggleEditMode();
+    });
   }
 
   onCancel(event: Event) {

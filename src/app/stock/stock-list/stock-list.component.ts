@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-stock-list',
   standalone: true,
-  imports: [LoaderComponent, LoaderComponent, RouterLink],
+  imports: [LoaderComponent, RouterLink],
   templateUrl: './stock-list.component.html',
   styleUrl: './stock-list.component.css'
 })

@@ -7,12 +7,23 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { AddStockComponent } from './stock/add-stock/add-stock.component';
 import { CurrentStockComponent } from './stock/current-stock/current-stock.component';
 import { LogoutComponent } from './user/logout/logout.component';
+import { AuthGuard } from './guards/auth.guard';
 // import { AuthGuard } from './guards/auth.guard';
 // import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  {
+    path: 'home',
+    children: [
+      {
+        path: ':stockId',
+        component: CurrentStockComponent,
+        canActivate: [AuthGuard],
+      }
+    ],
+  },
 
   //   Start - User routing
   { path: 'login', component: LoginComponent },
@@ -31,7 +42,7 @@ export const routes: Routes = [
       {
         path: ':stockId',
         component: CurrentStockComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
     ],
   },
