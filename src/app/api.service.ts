@@ -25,6 +25,10 @@ export class ApiService {
     return this.http.get<Stock>(`/api/stocks/${id}`);
   }
 
+  watch(id: string) {
+    return this.http.put(`/api/watch/${id}`, {});
+  }
+
   // getSingleTheme(id: string) {
   //   return this.http.get<Theme>(`/api/themes/${id}`);
   // }

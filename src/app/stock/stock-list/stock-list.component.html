@@ -24,7 +24,7 @@
                             <td>{{stock.stockName}}</td>
                             <td>{{stock.stockTicker}}</td>
                             <td>{{stock.sharePrice}}</td>
-                            <td><a class="btn btn-sm btn-primary details-btn" [routerLink]="stock._id">Details</a> <a class="btn btn-sm btn-primary portfolio-btn" href="">Add to Watchlist</a></td>
+                            <td><a class="btn btn-sm btn-primary details-btn" [routerLink]="stock._id">Details</a> <a class="btn btn-sm btn-primary portfolio-btn" [routerLink]="['/watch', stock._id]">Add to Watchlist</a></td>
                         </tr>
                     }
                   

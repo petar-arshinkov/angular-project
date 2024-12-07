@@ -8,8 +8,7 @@ import { AddStockComponent } from './stock/add-stock/add-stock.component';
 import { CurrentStockComponent } from './stock/current-stock/current-stock.component';
 import { LogoutComponent } from './user/logout/logout.component';
 import { AuthGuard } from './guards/auth.guard';
-// import { AuthGuard } from './guards/auth.guard';
-// import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
+import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -57,7 +56,7 @@ export const routes: Routes = [
   // },
   // End - Theme routing
 
-//   { path: 'error', component: ErrorMsgComponent },
+  { path: 'error', component: ErrorMsgComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];
