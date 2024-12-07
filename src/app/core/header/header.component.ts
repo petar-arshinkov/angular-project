@@ -10,19 +10,19 @@ import { UserService } from '../../user/user.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  // get isLoggedIn(): boolean {
-  //   return this.userService.isLogged;
-  // }
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
 
-  // get username(): string {
-  //   return this.userService.user?.username || '';
-  // }
+  get username(): string {
+    return this.userService.user?.username || '';
+  }
 
-  // constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
-  // logout() {
-  //   this.userService.logout().subscribe(() => {
-  //     this.router.navigate(['/login']);
-  //   });
-  // }
+  logout() {
+    this.userService.logout().subscribe(() => {
+      this.router.navigate(['/login']);
+    });
+  }
 }

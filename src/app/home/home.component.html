@@ -1,5 +1,31 @@
 <div class="content">
 
-<app-stock-list />
+    @if (isLoggedIn) {
+    <app-stock-list />
+    } @else {
+    <div class="welcome">
+        <h3>Welcome!</h3>
+        <p>
+            To view the stock list, please login.
+        </p>
 
-</div>
+
+        <div class="logged">
+            <ul>
+                <li><button class="btn btn-primary loginBtn"><a routerLink="/login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a></button>
+                    
+                </li>
+                <li><button class="btn btn-primary registerBtn">
+                    <a routerLink="/register">
+                        <i class="fas fa-user-plus"></i>
+                        Register
+                    </a></button>
+                </li>
+            </ul>
+        </div>
+     
+
+    </div>   }

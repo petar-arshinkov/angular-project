@@ -16,7 +16,6 @@ export const routes: Routes = [
   //   Start - User routing
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'logout', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
 
   //   End - User routing
