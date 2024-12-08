@@ -28,15 +28,15 @@ export class ApiService {
   }
 
   editStock(
-    id: string,
+    stockId: string,
     stockName: string,
     stockTicker: string,
     sharePrice: number,
     stockDescription: string,
     stockLogoLink: string
   ) {
-    const payload = { id, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
-    return this.http.put(`/api/stocks/${id}`, payload);
+    const payload = { stockId, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
+    return this.http.put<Stock>(`/api/stocks/${stockId}`, payload);
   }
   
   deleteStock(id: string) {

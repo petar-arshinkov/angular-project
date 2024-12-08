@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Stock, StockDetails } from '../../types/stocks';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Stock } from '../../types/stocks';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { HomeComponent } from '../../home/home.component';
@@ -27,13 +27,14 @@ export class CurrentStockComponent implements OnInit {
     stockDescription: new FormControl('', [Validators.required, Validators.minLength(10)]),
     stockLogoLink: new FormControl('', [Validators.required, Validators.minLength(1)]),
   });
-  router: any;
+
 
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   get isLoggedIn(): boolean {
@@ -79,7 +80,7 @@ export class CurrentStockComponent implements OnInit {
 
     const stockId = this.route.snapshot.params['stockId'];
     const updatedStock = this.form.value;
-console.log(updatedStock);
+console.log(stockId);
 
     this.apiService
     .editStock(
