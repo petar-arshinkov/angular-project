@@ -7,15 +7,8 @@ import { Stock } from './types/stocks';
 })
 export class ApiService {
   constructor(private http: HttpClient) { }
+  stock: Stock | null = null;
 
-  // getPosts(limit?: number) {
-  //   let url = `/api/posts`;
-  //   if (limit) {
-  //     url += `?limit=${limit}`;
-  //   }
-
-  //   return this.http.get<Post[]>(url);
-  // }
 
   getStocks() {
     return this.http.get<Stock[]>(`/api/stocks`);
@@ -26,24 +19,38 @@ export class ApiService {
   }
 
   watch(id: string) {
-    return this.http.put<Stock>(`/api/watch/${id}`, {});
+    return this.http.get<Stock>(`/api/watch/${id}`);
   }
-
-  // getSingleTheme(id: string) {
-  //   return this.http.get<Theme>(`/api/themes/${id}`);
-  // }
 
   createStock(stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
     const payload = { stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
     return this.http.post<Stock>(`/api/stocks`, payload);
   }
 
+  editStock(
+    id: string,
+    stockName: string,
+    stockTicker: string,
+    sharePrice: number,
+    stockDescription: string,
+    stockLogoLink: string
+  ) {
+    const payload = { id, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
+    return this.http.put(`/api/stocks/${id}`, payload);
+  }
+  
+  deleteStock(id: string) {
+    return this.http.delete(`/api/stocks/${id}`);
+  }
+  
+  
+
   // // CRUD operations
-  // // update -> http.put
-  // updateTheme(themeId: string, themeName: string, postText: string) {
-  //   const payload = { themeName, postText };
-  //   return this.http.put<Theme>(`/api/themes/${themeId}`, payload);
-  // }
+  // update -> http.put
+  updateStock(stockId: string, stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
+    const payload = { stockId, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
+    return this.http.put(`/api/stocks/${stockId}`, payload);
+  }
 
   // updatePost(themeId: string, postId: string) {
   //   const payload = {};
@@ -54,7 +61,7 @@ export class ApiService {
   // }
 
   // // delete -> http.delete theme ID
-  // deletePost(themeId: string, postId: string) {
-  //   return this.http.delete(`/api/themes/${themeId}/posts/${postId}`);
+  // deleteStock(stockId: string) {
+  //   return this.http.delete(`/api/stocks/${stockId}`);
   // }
 }

@@ -16,19 +16,6 @@ export const routes: Routes = [
     import('./home/home.component').then(
       (c) => c.HomeComponent
     ) },
-  {
-    path: 'home',
-    children: [
-      {
-        path: ':stockId',
-        loadComponent: () =>
-          import('./stock/current-stock/current-stock.component').then(
-            (c) => c.CurrentStockComponent
-          ),
-        canActivate: [AuthGuard],
-      },
-    ],
-  },
 
   //   Start - User routing
   { path: 'login', loadComponent: () =>
@@ -67,7 +54,15 @@ export const routes: Routes = [
             (c) => c.CurrentStockComponent
           ),
         canActivate: [AuthGuard],
-      }
+      },
+      // {
+      //   path: 'watch/:stockId',
+      //   loadComponent: () =>
+      //     import('./stock/current-stock/current-stock.component').then(
+      //       (c) => c.CurrentStockComponent
+      //     ),
+      //   canActivate: [AuthGuard],
+      // }
 
     ],
   },

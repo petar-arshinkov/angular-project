@@ -6,3 +6,17 @@
 background-color: green;
 border-color: green;
 }
+
+.img {
+    width: 100px;
+    height: 100px;
+
+}
+
+.img img {
+    width: 100%;
+}
+
+.description {
+    width: 25%;
+}

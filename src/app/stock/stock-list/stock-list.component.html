@@ -12,8 +12,10 @@
             <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-dark">
+                        <th scope="col">Logo</th>
                         <th scope="col">Stock Name</th>
                         <th scope="col">Ticker Symbol</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Price</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -21,10 +23,12 @@
                 <tbody>
                     @for (stock of stocks; track $index) {
                         <tr>
-                            <td>{{stock.stockName}}</td>
-                            <td>{{stock.stockTicker}}</td>
-                            <td>{{stock.sharePrice}}</td>
-                            <td><a class="btn btn-sm btn-primary details-btn" [routerLink]="stock._id">Details</a> </td>
+                            <td class="img"><img src="{{stock.stockLogoLink}}" alt="{{stock.stockName | titlecase}}"></td>
+                            <td>{{stock.stockName | titlecase}}</td>
+                            <td>{{stock.stockTicker | uppercase}}</td>
+                            <td class="description">{{stock.stockDescription | slice}}</td>
+                            <td>{{stock.sharePrice | currency: 'USD'}}</td>
+                            <td><a class="btn btn-sm btn-primary details-btn" [routerLink]="['/stocks', stock._id]">View Details</a> </td>
                         </tr>
                     }
                   

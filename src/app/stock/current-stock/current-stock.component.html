@@ -1,42 +1,114 @@
-
 @if(!isLoggedIn){
-  <app-home />
-  }
+<app-home />
+}
+
+@if(!isEditMode){
 <main class="main-area">
-    
-    <div class="centered">
 
-        <section class="cards">
-            
-            <article class="card">
-                
-                    <div class="card-content">
-                        <div class="card-header">
-                            <h3>{{stock.stockName}}</h3>
-                          </div>
-                          <div class="card-body">
-                            
-                            <h2 class="card-title">{{stock.stockTicker}}</h2>
-                            <img src="{{stock.stockLogoLink}}" alt="{{stock.stockName}}">
-                            <div>
-                              <p class="card-text">{{stock.stockDescription}}</p>
-                            </div>
-                            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                          </div>
-                          <div class="card-footer">
-                            Current Price: <a>{{stock.sharePrice}}</a>
-                          </div>
-                          <br>
-                          <a class="btn btn-sm btn-primary portfolio-btn" [routerLink]="['/watch', stock._id]">Add to Watchlist</a>
-                    </div><!-- .card-content -->
-               
-            </article><!-- .card -->
+  <div class="centered">
 
-        </section><!-- .cards -->
-       
-    </div><!-- .centered -->
-    
+    <section class="cards">
+
+      <article class="card">
+
+        <div class="card-content">
+          <div class="card-header">
+            <h1>{{stock.stockName | titlecase}}</h1>
+          </div>
+          <div class="card-body">
+
+            <h2 class="card-title">Ticker: {{stock.stockTicker | uppercase }}</h2>
+            <img src="{{stock.stockLogoLink}}" alt="{{stock.stockName}}">
+            <div>
+              <p class="card-text">{{stock.stockDescription}}</p>
+            </div>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          </div>
+          <div class="card-footer">
+            Current Price: <strong>{{stock.sharePrice | currency: 'USD'}}</strong>
+          </div>
+          <br>
+          <div class="btns">
+            <!-- <a class="btn btn-sm btn-primary watch-btn" [routerLink]="['/stocks/watch', stock._id]">Add to Watchlist</a> -->
+            <button class="red-button" (click)="deleteStock()">
+              <a >Delete</a>
+            </button>
+            <button class="green-button">
+              <a (click)="toggleEditMode()">Edit</a>
+            </button>
+          </div>
+
+
+        </div><!-- .card-content -->
+
+      </article><!-- .card -->
+
+    </section><!-- .cards -->
+
+  </div><!-- .centered -->
+
 </main>
 
+}
+
+@else{
+<main class="main-area">
+
+  <div class="centered">
+
+    <section class="cards">
+
+      <article class="card">
+
+        <div class="card-content">
+
+          <!-- FORM start -->
+          <form [formGroup]="form" (ngSubmit)="updateStock()">
+            <div class="form-floating mb-3">
+              <input class="form-control" placeholder="Apple" formControlName="stockName" required minlength="3" />
+              <label for="stockName">Stock Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" placeholder="AAPL" formControlName="stockTicker" required minlength="3" />
+              <label for="stockTicker">Stock Ticker</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" placeholder="$100" formControlName="sharePrice" required min="0"
+                max="1000" />
+              <label for="sharePrice">Share Price</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" placeholder="Apple is a nice company" formControlName="stockDescription"
+                required minlength="10" />
+              <label for="stockDescription">Stock Description</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control" placeholder="URL" formControlName="stockLogoLink" required minlength="1" />
+              <label for="stockLogoLink">Link To Company Logo</label>
+            </div>
+
+            <div class="btns">
+              <button class="red-button" (click)="onCancel($event)">Cancel</button>
+
+              <button type="submit" class="green-button" [disabled]="form.invalid">
+                Save
+              </button>
+            </div>
+          </form>
+          <br>
 
 
+        </div><!-- .card-content -->
+
+      </article><!-- .card -->
+
+    </section><!-- .cards -->
+
+  </div><!-- .centered -->
+
+</main>
+}

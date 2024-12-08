@@ -17,7 +17,7 @@
             </li>
             <li> <a routerLink="/profile" class="nav-link">
               <img class="rounded-circle me-lg-2" src="/user.jpg" alt="" style="width: 40px; height: 40px;">
-              <span class="d-none d-lg-inline-flex">{{ username }}</span>
+              <span class="d-none d-lg-inline-flex">{{ username | titlecase}}</span>
           </a></li>
           }
           @else {

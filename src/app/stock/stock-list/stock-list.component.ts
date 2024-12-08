@@ -3,13 +3,15 @@ import { ApiService } from '../../api.service';
 import { Stock } from '../../types/stocks';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { RouterLink } from '@angular/router';
+import { UpperCasePipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { SlicePipe } from '../../shared/pipes/slice.pipe';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-stock-list',
   standalone: true,
-  imports: [LoaderComponent, RouterLink],
+  imports: [LoaderComponent, RouterLink, UpperCasePipe, CurrencyPipe, TitleCasePipe, SlicePipe],
   templateUrl: './stock-list.component.html',
   styleUrl: './stock-list.component.css'
 })

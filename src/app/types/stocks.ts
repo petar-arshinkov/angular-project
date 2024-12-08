@@ -13,3 +13,12 @@ export interface Stock {
   updatedAt: string;
   __v: number;
 }
+
+
+export interface StockDetails {
+  stockName: string;
+  stockTicker: string;
+  sharePrice: string;
+  stockDescription: string;
+  stockLogoLink: string;
+}
