@@ -46,7 +46,7 @@ export class ApiService {
   }
   
   deleteStock(id: string) {
-    return this.http.delete(`/api/stocks/${id}`);
+    return this.http.delete(`/api/stocks/delete/${id}`);
   }
   
   

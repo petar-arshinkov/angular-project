@@ -52,7 +52,7 @@ export class CurrentStockComponent implements OnInit {
 
   get isOwner(): boolean {
     let userID = this.userService.user?._id;
-    console.log(userID);
+
     
     return this.stock.userId?._id === this.userService.user?._id;
   }

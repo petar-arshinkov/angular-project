@@ -43,8 +43,6 @@ export const routes: Routes = [
 
   //   End - User routing
 
-
-  // Start - Theme routing
   {
     path: 'stocks',
     children: [
@@ -80,15 +78,6 @@ export const routes: Routes = [
 
 
 
-        // {
-        //   path: 'add-theme',
-        //   loadComponent: () =>
-        //     import('./stock/add-stock/add-stock.component').then(
-        //       (c) => c.AddStockComponent
-        //     ),
-        //   canActivate: [AuthGuard],
-        // },
-        // End - Theme routing
 
         { path: 'error', loadComponent: () =>
           import('./core/error-msg/error-msg.component').then(
