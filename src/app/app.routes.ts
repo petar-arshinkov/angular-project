@@ -17,6 +17,11 @@ export const routes: Routes = [
       (c) => c.HomeComponent
     ) },
 
+    { path: 'watchlist', loadComponent: () =>
+      import('./stock/watchlist/watchlist.component').then(
+        (c) => c.WatchlistComponent
+      ) },
+
   //   Start - User routing
   { path: 'login', loadComponent: () =>
     import('./user/login/login.component').then(
@@ -55,14 +60,14 @@ export const routes: Routes = [
           ),
         canActivate: [AuthGuard],
       },
-      // {
-      //   path: 'watch/:stockId',
-      //   loadComponent: () =>
-      //     import('./stock/current-stock/current-stock.component').then(
-      //       (c) => c.CurrentStockComponent
-      //     ),
-      //   canActivate: [AuthGuard],
-      // }
+      {
+        path: 'watch/:stockId',
+        loadComponent: () =>
+          import('./home/home.component').then(
+            (c) => c.HomeComponent
+          ),
+        canActivate: [AuthGuard],
+      }
 
     ],
   },

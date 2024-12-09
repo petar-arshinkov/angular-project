@@ -2,10 +2,15 @@
     margin-right: 10px;
 }
 
-.portfolio-btn {
+.watch-btn {
 background-color: green;
 border-color: green;
 }
+
+.unwatch-btn {
+    background-color: red;
+    border-color: red;
+    }
 
 .img {
     width: 100px;

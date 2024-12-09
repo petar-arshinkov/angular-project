@@ -28,7 +28,7 @@
             Current Price: <strong>{{stock.sharePrice | currency: 'USD'}}</strong>
           </div>
           <br>
-          <div class="btns">
+          @if (isOwner) {   <div class="btns">
             <!-- <a class="btn btn-sm btn-primary watch-btn" [routerLink]="['/stocks/watch', stock._id]">Add to Watchlist</a> -->
             <button class="red-button" (click)="deleteStock()">
               Delete
@@ -36,7 +36,8 @@
             <button class="green-button" (click)="toggleEditMode()">
               Edit
             </button>
-          </div>
+          </div>}
+       
 
 
         </div><!-- .card-content -->
@@ -90,14 +91,14 @@
               <input class="form-control" placeholder="URL" formControlName="stockLogoLink" required minlength="1" />
               <label for="stockLogoLink">Link To Company Logo</label>
             </div>
-
-            <div class="btns">
+            @if (isOwner) {<div class="btns">
               <button class="red-button" (click)="onCancel($event)">Cancel</button>
 
               <button type="submit" class="green-button" [disabled]="form.invalid">
                 Save
               </button>
-            </div>
+            </div>}
+            
           </form>
           <br>
 

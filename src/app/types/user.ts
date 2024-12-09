@@ -13,6 +13,7 @@ export interface UserForAuth {
   email: string;
   password: string;
   id: string;
+  _id: string;
 }
 
 export interface ProfileDetails {

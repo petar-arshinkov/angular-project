@@ -7,7 +7,8 @@ import { HomeComponent } from '../../home/home.component';
 import { UpperCasePipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
-import {FormGroup,FormControl,Validators,ReactiveFormsModule,} from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, } from '@angular/forms';
+import { User } from '../../types/user';
 
 
 @Component({
@@ -45,12 +46,32 @@ export class CurrentStockComponent implements OnInit {
     return this.userService.user?.username || '';
   }
 
+  get userId(): string {
+    return this.userService.user?.id || '';
+  }
+
+  get isOwner(): boolean {
+    let userID = this.userService.user?._id;
+    console.log(userID);
+    
+    return this.stock.userId?._id === this.userService.user?._id;
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.params['stockId'];
 
     this.apiService.getSingleStock(id).subscribe((stock) => {
-      this.stock = stock;
+      this.loadStockData(id);
 
+    });
+
+  }
+
+
+
+  loadStockData(stockId: string): void {
+    this.apiService.getSingleStock(stockId).subscribe((stock) => {
+      this.stock = stock;
       this.form.setValue({
         stockName: stock.stockName || '',
         stockTicker: stock.stockTicker || '',
@@ -59,9 +80,6 @@ export class CurrentStockComponent implements OnInit {
         stockLogoLink: stock.stockLogoLink || '',
       });
     });
-
-
-    
   }
 
   toggleEditMode() {
@@ -80,36 +98,44 @@ export class CurrentStockComponent implements OnInit {
 
     const stockId = this.route.snapshot.params['stockId'];
     const updatedStock = this.form.value;
-console.log(stockId);
+
 
     this.apiService
-    .editStock(
-      stockId,
-      updatedStock.stockName!,
-      updatedStock.stockTicker!,
-      updatedStock.sharePrice!,
-      updatedStock.stockDescription!,
-      updatedStock.stockLogoLink!
-    )
-    .subscribe(() => {
-      this.toggleEditMode();
-    });
+      .editStock(
+        stockId,
+        updatedStock.stockName!,
+        updatedStock.stockTicker!,
+        updatedStock.sharePrice!,
+        updatedStock.stockDescription!,
+        updatedStock.stockLogoLink!
+      )
+      .subscribe({
+        next: () => {
+
+          this.router.navigate([`/stocks/${stockId}`])
+          this.toggleEditMode();
+          this.loadStockData(stockId);
+        }, error: (err) => {
+          console.error('Error editing stock:', err);
+
+        }
+      });
   }
 
   deleteStock(): void {
-    const stockId = this.route.snapshot.params['stockId']; 
-  
+    const stockId = this.route.snapshot.params['stockId'];
+
     this.apiService
       .deleteStock(stockId)
       .subscribe({
         next: () => {
-          this.router.navigate(['/']); 
+          this.router.navigate(['/']);
         },
         error: (err) => {
           console.error('Error deleting stock:', err);
- 
+
         }
       });
   }
-  
+
 }

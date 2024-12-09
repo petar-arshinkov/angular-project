@@ -18,8 +18,14 @@ export class ApiService {
     return this.http.get<Stock>(`/api/stocks/${id}`);
   }
 
-  watch(id: string) {
-    return this.http.get<Stock>(`/api/watch/${id}`);
+  watch(stockId: string) {
+    
+    return this.http.put<Stock>(`/api/stocks/watch/${stockId}`,{stockId});
+  }
+
+  unwatch(stockId: string) {
+    
+    return this.http.put<Stock>(`/api/stocks/unwatch/${stockId}`,{stockId});
   }
 
   createStock(stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
@@ -47,10 +53,10 @@ export class ApiService {
 
   // // CRUD operations
   // update -> http.put
-  updateStock(stockId: string, stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
-    const payload = { stockId, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
-    return this.http.put(`/api/stocks/${stockId}`, payload);
-  }
+  // updateStock(stockId: string, stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
+  //   const payload = { stockId, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
+  //   return this.http.put(`/api/stocks/${stockId}`, payload);
+  // }
 
   // updatePost(themeId: string, postId: string) {
   //   const payload = {};
