@@ -21,7 +21,7 @@ export class AddStockComponent {
     const { stockName, stockTicker, sharePrice, stockDescription, stockLogoLink } = form.value;
     
     this.apiService.createStock(stockName, stockTicker, sharePrice, stockDescription, stockLogoLink).subscribe(() => {
-      this.router.navigate(['/stocks']);
+      this.router.navigate(['/home']);
     });
   }
 }

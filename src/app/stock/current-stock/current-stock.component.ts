@@ -55,10 +55,8 @@ export class CurrentStockComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['stockId'];
 
-    this.apiService.getSingleStock(id).subscribe((stock) => {
       this.loadStockData(id);
 
-    });
 
   }
 
