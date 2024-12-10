@@ -7,7 +7,6 @@ import { UpperCasePipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
 import { SlicePipe } from '../../shared/pipes/slice.pipe';
-import { HomeComponent } from '../../home/home.component';
 import { UserService } from '../../user/user.service';
 
 
@@ -28,10 +27,7 @@ export class StockListComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.apiService.getStocks().subscribe((stocks) => {
-      this.stocks = stocks;
-      this.isLoading = false;
-    });
+    this.reloadStocks();
 
 
   }
@@ -57,13 +53,28 @@ export class StockListComponent implements OnInit {
       .unwatch(stockId)
       .subscribe({
         next: () => {
-          this.router.navigate(['/watchlist']);
+          this.reloadStocks();
         }, error: (err) => {
           console.error('Error adding stock to watchlist:', err);
 
         }
       });
   }
+
+  reloadStocks(): void {
+    this.isLoading = true;
+    this.apiService.getStocks().subscribe({
+      next: (stocks) => {
+        this.stocks = stocks;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error reloading stocks:', err);
+        this.isLoading = false;
+      },
+    });
+  }
+  
 
   isWatching(stock: Stock): boolean {
     const user = this.userService.user?._id || "";
