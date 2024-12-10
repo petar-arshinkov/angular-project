@@ -47,8 +47,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./stock/current-stock/current-stock.component').then(
             (c) => c.CurrentStockComponent
-          ),
-        canActivate: [AuthGuard],
+          )
       },
       {
         path: 'watch/:stockId',

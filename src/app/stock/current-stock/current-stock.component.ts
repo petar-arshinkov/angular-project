@@ -13,7 +13,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule, } from '@angul
 @Component({
   selector: 'app-current-stock',
   standalone: true,
-  imports: [HomeComponent, UpperCasePipe, TitleCasePipe, CurrencyPipe, ReactiveFormsModule],
+  imports: [ UpperCasePipe, TitleCasePipe, CurrencyPipe, ReactiveFormsModule],
   templateUrl: './current-stock.component.html',
   styleUrl: './current-stock.component.css'
 })

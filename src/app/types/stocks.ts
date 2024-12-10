@@ -22,3 +22,11 @@ export interface StockDetails {
   stockDescription: string;
   stockLogoLink: string;
 }
+
+export interface StockToView {
+  stockName: string;
+  stockTicker: string;
+  sharePrice: number;
+  stockDescription: string;
+  stockLogoLink: string;
+}

@@ -1,5 +1,5 @@
 @if (isLoading) {
-    <app-loader />
+<app-loader />
 }@else {
 
 <!-- All Stocks -->
@@ -22,20 +22,25 @@
                 </thead>
                 <tbody>
                     @for (stock of stocks; track $index) {
-                        <tr>
-                            <td class="img"><img src="{{stock.stockLogoLink}}" alt="{{stock.stockName | titlecase}}"></td>
-                            <td>{{stock.stockName | titlecase}}</td>
-                            <td>{{stock.stockTicker | uppercase}}</td>
-                            <td class="description">{{stock.stockDescription | slice}}</td>
-                            <td>{{stock.sharePrice | currency: 'USD'}}</td>
-                            <td><a class="btn btn-sm btn-primary details-btn" [routerLink]="['/stocks', stock._id]">View Details</a> 
-                                @if (!isWatching(stock)) {
-                                <a class="btn btn-sm btn-primary watch-btn" (click)="watchStock(stock._id)">Add to Watchlist</a>}
-                                @else{<a class="btn btn-sm btn-primary unwatch-btn" (click)="StopWatchStock(stock._id)">Remove From Watchlist</a>}
-                            </td>
-                        </tr>
+                    <tr>
+                        <td class="img"><img src="{{stock.stockLogoLink}}" alt="{{stock.stockName | titlecase}}"></td>
+                        <td>{{stock.stockName | titlecase}}</td>
+                        <td>{{stock.stockTicker | uppercase}}</td>
+                        <td class="description">{{stock.stockDescription | slice}}</td>
+                        <td>{{stock.sharePrice | currency: 'USD'}}</td>
+                        <td><a class="btn btn-sm btn-primary details-btn" [routerLink]="['/stocks', stock._id]">View
+                                Details</a>
+                            @if (isLoggedIn) {
+                            @if(!isWatching(stock)){
+                            <a class="btn btn-sm btn-primary watch-btn" (click)="watchStock(stock._id)">Add to
+                                Watchlist</a>}
+                            @else {
+                            <a class="btn btn-sm btn-primary unwatch-btn" (click)="StopWatchStock(stock._id)">Remove
+                                From Watchlist</a>}}
+                        </td>
+                    </tr>
                     }
-                  
+
                 </tbody>
             </table>
         </div>

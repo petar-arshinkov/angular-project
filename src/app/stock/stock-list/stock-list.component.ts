@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { Stock } from '../../types/stocks';
+import { Stock,StockToView } from '../../types/stocks';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
@@ -28,10 +28,11 @@ export class StockListComponent implements OnInit {
 
   ngOnInit() {
     this.reloadStocks();
-
-
   }
 
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
 
   watchStock(stockId: string): void {
     
