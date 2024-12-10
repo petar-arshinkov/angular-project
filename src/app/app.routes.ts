@@ -1,14 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './error/error.component';
-import { LoginComponent } from './user/login/login.component';
-import { RegisterComponent } from './user/register/register.component';
-import { ProfileComponent } from './user/profile/profile.component';
-import { AddStockComponent } from './stock/add-stock/add-stock.component';
-import { CurrentStockComponent } from './stock/current-stock/current-stock.component';
-import { LogoutComponent } from './user/logout/logout.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

@@ -8,7 +8,6 @@ import { UpperCasePipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, } from '@angular/forms';
-import { User } from '../../types/user';
 
 
 @Component({
@@ -44,10 +43,6 @@ export class CurrentStockComponent implements OnInit {
 
   get username(): string {
     return this.userService.user?.username || '';
-  }
-
-  get userId(): string {
-    return this.userService.user?.id || '';
   }
 
   get isOwner(): boolean {

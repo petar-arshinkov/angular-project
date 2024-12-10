@@ -49,25 +49,4 @@ export class ApiService {
     return this.http.delete(`/api/stocks/delete/${id}`);
   }
   
-  
-
-  // // CRUD operations
-  // update -> http.put
-  // updateStock(stockId: string, stockName: string, stockTicker: string, sharePrice: number, stockDescription: string, stockLogoLink: string) {
-  //   const payload = { stockId, stockName, stockTicker, sharePrice, stockDescription, stockLogoLink };
-  //   return this.http.put(`/api/stocks/${stockId}`, payload);
-  // }
-
-  // updatePost(themeId: string, postId: string) {
-  //   const payload = {};
-  //   return this.http.put<Theme>(
-  //     `/api/themes/${themeId}/posts/${postId}`,
-  //     payload
-  //   );
-  // }
-
-  // // delete -> http.delete theme ID
-  // deleteStock(stockId: string) {
-  //   return this.http.delete(`/api/stocks/${stockId}`);
-  // }
 }

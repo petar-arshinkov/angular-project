@@ -22,14 +22,12 @@
             <div>
               <p class="card-text">{{stock.stockDescription}}</p>
             </div>
-            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
           </div>
           <div class="card-footer">
             Current Price: <strong>{{stock.sharePrice | currency: 'USD'}}</strong>
           </div>
           <br>
           @if (isOwner) {   <div class="btns">
-            <!-- <a class="btn btn-sm btn-primary watch-btn" [routerLink]="['/stocks/watch', stock._id]">Add to Watchlist</a> -->
             <button class="red-button" (click)="deleteStock()">
               Delete
             </button>
