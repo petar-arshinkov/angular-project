@@ -37,27 +37,28 @@ export class CurrentStockComponent implements OnInit {
     private router: Router
   ) { }
 
-  get isLoggedIn(): boolean {
-    return this.userService.isLogged;
-  }
 
-  get username(): string {
-    return this.userService.user?.username || '';
-  }
-
-  get isOwner(): boolean {    
-    return this.stock.userId?._id === this.userService.user?._id;
-  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['stockId'];
 
       this.loadStockData(id);
 
-
+  }
+  
+ 
+  get username(): string {
+    return this.userService.user?.username || '';
   }
 
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
 
+  get isOwner(): boolean {    
+    return this.stock.userId?._id === this.userService.user?._id ;
+
+  }
 
   loadStockData(stockId: string): void {
     this.apiService.getSingleStock(stockId).subscribe((stock) => {
@@ -69,11 +70,9 @@ export class CurrentStockComponent implements OnInit {
         stockDescription: stock.stockDescription || '',
         stockLogoLink: stock.stockLogoLink || '',
       });
-
-      console.log(this.isOwner);
-      
     });
   }
+
 
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
