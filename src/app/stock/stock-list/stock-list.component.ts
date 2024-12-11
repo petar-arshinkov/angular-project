@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { Stock,StockToView } from '../../types/stocks';
+import { Stock } from '../../types/stocks';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
@@ -8,7 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
 import { SlicePipe } from '../../shared/pipes/slice.pipe';
 import { UserService } from '../../user/user.service';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-stock-list',
@@ -17,8 +17,8 @@ import { UserService } from '../../user/user.service';
   templateUrl: './stock-list.component.html',
   styleUrl: './stock-list.component.css'
 })
-export class StockListComponent implements OnInit {
-
+export class StockListComponent implements OnInit, OnDestroy {
+  private subscription: Subscription | null = null;
   stocks: Stock[] = [];
   isLoading = false;
   userId: String = ""
@@ -80,5 +80,9 @@ export class StockListComponent implements OnInit {
   isWatching(stock: Stock): boolean {
     const user = this.userService.user?._id || "";
     return stock.watchers.includes(user);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

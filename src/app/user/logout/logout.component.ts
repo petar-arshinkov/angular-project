@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-logout',
@@ -9,7 +10,8 @@ import { UserService } from '../user.service';
   templateUrl: './logout.component.html',
   styleUrl: './logout.component.css'
 })
-export class LogoutComponent implements OnInit {
+export class LogoutComponent implements OnInit, OnDestroy {
+  private subscription: Subscription | null = null;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -23,5 +25,8 @@ export class LogoutComponent implements OnInit {
         this.router.navigate(['/login']); 
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

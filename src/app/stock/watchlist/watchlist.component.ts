@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Stock } from '../../types/stocks';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { TitleCasePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-watchlist',
@@ -14,7 +14,8 @@ import { TitleCasePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
 })
 
 
-export class WatchlistComponent implements OnInit {
+export class WatchlistComponent implements OnInit, OnDestroy {
+  private subscription: Subscription | null = null;
   stocks: Stock[] = [];
   isLoading = false;
 
@@ -28,5 +29,9 @@ export class WatchlistComponent implements OnInit {
       this.stocks = stocks.filter((stock) => stock.watchers.includes(loggedInUserId));
       this.isLoading = false;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

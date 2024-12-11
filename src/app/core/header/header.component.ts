@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../user/user.service';
 import { TitleCasePipe } from '@angular/common';
+import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,8 @@ import { TitleCasePipe } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
+  private subscription: Subscription | null = null; 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
   }
@@ -25,5 +28,9 @@ export class HeaderComponent {
     this.userService.logout().subscribe(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

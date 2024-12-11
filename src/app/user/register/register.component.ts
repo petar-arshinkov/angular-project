@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,6 +10,7 @@ import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../constants';
 import { matchPasswordsValidator } from '../../utils/match-passwords.validator';
 import { UserService } from '../user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ import { UserService } from '../user.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy{
+  private subscription: Subscription | null = null;
   form = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -83,5 +85,8 @@ export class RegisterComponent {
       .subscribe(() => {
         this.router.navigate(['/home']);
       });
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

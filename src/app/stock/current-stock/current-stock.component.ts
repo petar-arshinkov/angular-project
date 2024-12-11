@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Stock } from '../../types/stocks';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
-import { HomeComponent } from '../../home/home.component';
 import { UpperCasePipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,7 +17,9 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule, } from '@angul
   templateUrl: './current-stock.component.html',
   styleUrl: './current-stock.component.css'
 })
-export class CurrentStockComponent implements OnInit {
+export class CurrentStockComponent implements OnInit, OnDestroy {
+  private subscription: Subscription | null = null;
+  
   isEditMode: boolean = false;
   stock = {} as Stock;
   form = new FormGroup({
@@ -128,6 +130,10 @@ export class CurrentStockComponent implements OnInit {
 
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe()
   }
 
 }

@@ -4,6 +4,8 @@ import { UserService } from '../user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
 import { DOMAINS } from '../../constants';
+import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +14,10 @@ import { DOMAINS } from '../../constants';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
-  domains = DOMAINS;
+export class LoginComponent implements OnDestroy{
+  private subscription: Subscription | null = null;
 
+  domains = DOMAINS;
   constructor(private userService: UserService, private router: Router) {}
 
   login(form: NgForm) {
@@ -28,5 +31,9 @@ export class LoginComponent {
     this.userService.login(email, password).subscribe(() => {
       this.router.navigate(['/home']);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

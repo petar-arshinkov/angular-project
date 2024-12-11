@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { StockListComponent } from '../stock/stock-list/stock-list.component';
-
 import { UserService } from '../user/user.service';
 
 
