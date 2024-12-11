@@ -45,10 +45,7 @@ export class CurrentStockComponent implements OnInit {
     return this.userService.user?.username || '';
   }
 
-  get isOwner(): boolean {
-    let userID = this.userService.user?._id;
-
-    
+  get isOwner(): boolean {    
     return this.stock.userId?._id === this.userService.user?._id;
   }
 
@@ -72,6 +69,9 @@ export class CurrentStockComponent implements OnInit {
         stockDescription: stock.stockDescription || '',
         stockLogoLink: stock.stockLogoLink || '',
       });
+
+      console.log(this.isOwner);
+      
     });
   }
 

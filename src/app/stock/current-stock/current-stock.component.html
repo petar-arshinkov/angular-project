@@ -25,7 +25,7 @@
             Current Price: <strong>{{stock.sharePrice | currency: 'USD'}}</strong>
           </div>
           <br>
-          @if (isOwner) {   <div class="btns">
+          @if (isOwner && isLoggedIn) {   <div class="btns">
             <button class="red-button" (click)="deleteStock()">
               Delete
             </button>
@@ -87,7 +87,7 @@
               <input class="form-control" placeholder="URL" formControlName="stockLogoLink" required minlength="1" />
               <label for="stockLogoLink">Link To Company Logo</label>
             </div>
-            @if (isOwner) {<div class="btns">
+            @if (isOwner && isLoggedIn) {<div class="btns">
               <button class="red-button" (click)="onCancel($event)">Cancel</button>
 
               <button type="submit" class="green-button" [disabled]="form.invalid">
